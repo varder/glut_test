@@ -17,11 +17,11 @@
 
 #pragma once
 
-#include <util/darray.h>
-#include <util/threading.h>
-#include <graphics/graphics.h>
-#include <graphics/device-exports.h>
-#include <graphics/matrix4.h>
+#include "util/darray.h"
+#include "util/threading.h"
+#include "graphics/graphics.h"
+#include "graphics/device-exports.h"
+#include "graphics/matrix4.h"
 
 #include <glad/glad.h>
 
