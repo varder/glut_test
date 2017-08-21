@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ******************************************************************************/
 
-#include <graphics/matrix3.h>
+#include "graphics/matrix3.h"
 #include "gl-subsystem.h"
 
 /* Goofy Windows.h macros need to be removed */

@@ -17,7 +17,8 @@
 
 #pragma once
 
-#include "../util/cf-parser.h"
+//#include "../util/cf-parser.h"
+#include "util/cf-parser.h"
 #include "graphics.h"
 
 #ifdef __cplusplus

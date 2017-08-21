@@ -1,10 +1,12 @@
 project(libobs-opengl)
 
+add_subdirectory(glad)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
-
+include_directories("${CMAKE_SOURCE_DIR}/deps/glad/include")
 add_definitions(-DLIBOBS_EXPORTS)
+
 
 if(WIN32)
 	set(libobs-opengl_PLATFORM_SOURCES
@@ -91,9 +93,38 @@ set_target_properties(libobs-opengl
 		)
 endif()
 
+find_package(OpenGL)
+
+set(glad_SOURCES
+        deps/glad/src/glad.c
+        deps/glad/include/glad/glad.h)
+
+if(WIN32)
+        set(glad_PLATFORM_SOURCES
+                deps/glad/src/glad_wgl.c
+                deps/glad/include/glad/glad_wgl.h)
+elseif(NOT APPLE)
+        set(glad_PLATFORM_SOURCES
+                deps/glad/src/glad_glx.c
+                deps/glad/include/glad/glad_glx.h)
+endif()
+
+add_library(glad SHARED
+        ${glad_SOURCES}
+        ${glad_PLATFORM_SOURCES})
+
 target_link_libraries(libobs-opengl
-	libobs
-	glad
-	${libobs-opengl_PLATFORM_DEPS})
+        obs
+#        opengl32
+        obsglad
+        freeglut
+        ${libobs-opengl_PLATFORM_DEPS}
+        ${glad_PLATFORM_DEPS}
+        ${OPENGL_gl_LIBRARY})
+
+#find_package(opengl32.dll REQUIRED)
+
+
+
 
 #install_obs_core(libobs-opengl)
